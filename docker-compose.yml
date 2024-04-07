@@ -13,6 +13,9 @@ services:
         build: ./streaming-server
         depends_on:
         -   basement_cam_stream_ripper
+        -   upstairs_hallway_cam_stream_ripper
+        -   front_door_cam_stream_ripper
+        -   living_room_cam_stream_ripper
         ports:
         -   10555:10555
         volumes:
