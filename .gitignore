@@ -1,0 +1,10 @@
+secrets.env
+.DS_Store
+.history/
+stuff_detected.mp4
+output.png
+detection-ai/test.mp4
+detection-ai/test.png
+detection-ai/retinanet_resnet50_fpn_coco-eeacb38b.pth
+detection-ai/tiny-yolov3.pt
+detection-ai/yolov3.pt

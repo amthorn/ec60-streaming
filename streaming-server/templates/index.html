@@ -1,0 +1,45 @@
+<html>
+    <body>  
+        <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
+        <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>    
+    
+        <video id="basementVideoPlayer" width="600" height="500" controls autoplay>
+            <source src="http://localhost:8088/dash/Basement_Cam.mpd" type="application/dash+xml">
+        </video><br/><br/>
+    
+        <video id="upstairsHallwayVideoPlayer" width="600" height="500" controls autoplay>
+            <source src="http://localhost:8088/dash/Upstairs_Hallway_Cam.mpd" type="application/dash+xml">
+        </video>
+    
+        <video id="frontDoorVideoPlay" width="600" height="500" controls autoplay>
+            <source src="http://localhost:8088/dash/Front_Door_Cam.mpd" type="application/dash+xml">
+        </video>
+    
+        <video id="livingRoomVideoPlayer" width="600" height="500" controls autoplay>
+            <source src="http://localhost:8088/dash/Living_Room_Cam.mpd" type="application/dash+xml">
+        </video>
+        <!-- DASH-AVC/265 reference implementation -->
+        <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+        <script>
+        <!--setup the video element and attach it to the Dash player-->
+                (function(){
+                    var url = "http://localhost:8088/dash/Basement_Cam.mpd";
+                    var player = dashjs.MediaPlayer().create();
+                    player.initialize(document.querySelector("#basementVideoPlayer"), url, true);
+    
+                    var url = "http://localhost:8088/dash/Upstairs_Hallway_Cam.mpd";
+                    var player = dashjs.MediaPlayer().create();
+                    player.initialize(document.querySelector("#upstairsHallwayVideoPlayer"), url, true);
+    
+                    var url = "http://localhost:8088/dash/From_Door_Cam.mpd";
+                    var player = dashjs.MediaPlayer().create();
+                    player.initialize(document.querySelector("#frontDoorVideoPlay"), url, true);
+    
+                    var url = "http://localhost:8088/dash/Living_Room_Cam.mpd";
+                    var player = dashjs.MediaPlayer().create();
+                    player.initialize(document.querySelector("#livingRoomVideoPlayer"), url, true);
+                })();
+        </script>
+    </body>
+</html>

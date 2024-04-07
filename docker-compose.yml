@@ -1,0 +1,67 @@
+version: "3.9"
+services:
+    rtmp_server:
+        build: ./rtmp-server
+        ports:
+        -   1935:1935
+        -   8088:8088
+        command:
+            - nginx
+            - -g
+            - daemon off;
+    streaming_server:
+        build: ./streaming-server
+        depends_on:
+        -   basement_cam_stream_ripper
+        ports:
+        -   10555:10555
+        volumes:
+        -   ./secrets.env:/secrets.env
+    basement_cam_stream_ripper:
+        restart: always
+        build: ./stream-ripper
+        depends_on:
+        -   rtmp_server
+        env_file:
+            ./secrets.env
+        command:
+            # IP of the basement camera
+        -   "192.168.86.184"
+            # Name for the camera
+        -   Basement_Cam
+    upstairs_hallway_cam_stream_ripper:
+        restart: always
+        build: ./stream-ripper
+        depends_on:
+        -   rtmp_server
+        env_file:
+            ./secrets.env
+        command:
+            # IP of the upstairs hallway camera
+        -   "192.168.86.181"
+            # Name for the camera
+        -   Upstairs_Hallway_Cam
+    front_door_cam_stream_ripper:
+        restart: always
+        build: ./stream-ripper
+        depends_on:
+        -   rtmp_server
+        env_file:
+            ./secrets.env
+        command:
+            # IP of the front door camera
+        -   "192.168.86.179"
+            # Name for the camera
+        -   Front_Door_Cam
+    living_room_cam_stream_ripper:
+        restart: always
+        build: ./stream-ripper
+        depends_on:
+        -   rtmp_server
+        env_file:
+            ./secrets.env
+        command:
+            # IP of the front door camera
+        -   "192.168.86.173"
+            # Name for the camera
+        -   Living_Room_Cam
